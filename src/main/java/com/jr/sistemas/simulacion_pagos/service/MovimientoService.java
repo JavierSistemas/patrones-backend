@@ -1,6 +1,7 @@
 package com.jr.sistemas.simulacion_pagos.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import com.jr.sistemas.simulacion_pagos.dto.TipoMovimientoDTO;
@@ -20,7 +21,7 @@ public class MovimientoService {
         return repository.findByEstado("ACTIVO")
                     .stream()
                     .map(m -> new TipoMovimientoDTO(m.getCodigo(),m.getDescripcion()))
-                    .toList();
+                    .collect(Collectors.toList());
     }
 
     public TipoMovimientoDTO procesarMovimiento(String codigo){
